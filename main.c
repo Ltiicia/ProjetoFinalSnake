@@ -7,7 +7,7 @@
 #include "joystick.h"
 #include "button.h"
 #include "oled_display.h"
-#include "led_matrix.h"
+// #include "led_matrix.h"
 // Remova a linha abaixo
 // #include "ws2818b.pio.h"
 
@@ -183,10 +183,10 @@ int main()
 {
   setup();
 
-  PIO pio = pio0;
-  uint offset = pio_add_program(pio, &ws2818b_program); // Adicione o programa PIO correto
-  uint sm = pio_claim_unused_sm(pio, true);
-  init_led_matrix(pio, sm, offset);
+  // PIO pio = pio0;
+  // uint offset = pio_add_program(pio, &ws2818b_program); // Adicione o programa PIO correto
+  // uint sm = pio_claim_unused_sm(pio, true);
+  // init_led_matrix(pio, sm, offset);
 
   while (true)
   {
@@ -198,10 +198,10 @@ int main()
     if (game_over)
     {
       oled_display_message("Game Over!");
-      for (int i = 0; i < 5; i++) // Loop to make the X blink 5 times
-      {
-        game_over_animation(pio, sm);
-      }
+      // for (int i = 0; i < 5; i++) // Loop to make the X blink 5 times
+      // {
+      //   game_over_animation(pio, sm);
+      // }
       while (game_over)
       {
         if (button_a_is_pressed())

@@ -40,7 +40,6 @@ add_executable(NewConversorAD
     joystick.c
     button.c
     oled_display.c
-    led_matrix.c
     ws2818b.pio
 )
 
