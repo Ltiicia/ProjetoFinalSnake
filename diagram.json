@@ -4,128 +4,274 @@
   "editor": "wokwi",
   "parts": [
     {
-      "type": "board-pi-pico",
+      "type": "wokwi-pi-pico",
       "id": "pico",
-      "top": 100,
-      "left": 350,
+      "top": 35.25,
+      "left": 61.2,
       "attrs": {
-        "builder": "pico-sdk"
+        "env": "arduino-community"
       }
     },
     {
-      "type": "wokwi-led-rgb",
-      "id": "led_rgb",
-      "top": 200,
-      "left": 150,
+      "type": "board-ssd1306",
+      "id": "oled1",
+      "top": 291.14,
+      "left": 57.83,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led1",
+      "top": 159.6,
+      "left": -5.8,
       "attrs": {
-        "common": "cathode"
+        "color": "red"
       }
     },
     {
-      "type": "wokwi-button",
-      "id": "button_a",
-      "top": 250,
-      "left": 150
+      "type": "wokwi-pushbutton",
+      "id": "button1",
+      "top": 25.4,
+      "left": -48,
+      "attrs": {
+        "color": "blue",
+        "bounce": "1"
+      }
     },
     {
-      "type": "wokwi-button",
-      "id": "button_b",
-      "top": 300,
-      "left": 150
+      "type": "wokwi-pushbutton",
+      "id": "button2",
+      "top": 73.4,
+      "left": -48,
+      "attrs": {
+        "color": "blue",
+        "bounce": "1"
+      }
     },
     {
-      "type": "wokwi-joystick",
+      "type": "wokwi-analog-joystick",
       "id": "joystick",
-      "top": 200,
-      "left": 300
+      "top": -48.6,
+      "left": 216.6,
+      "attrs": {}
     },
     {
-      "type": "wokwi-oled-display-1306",
-      "id": "oled_display",
-      "top": 250,
-      "left": 350
+      "type": "wokwi-resistor",
+      "id": "res3",
+      "top": 205.55,
+      "left": -19.2,
+      "attrs": {
+        "value": "330"
+      }
     }
   ],
   "connections": [
     [
       "pico:GP13",
-      "led_rgb:R",
-      "red"
-    ],
-    [
-      "pico:GP11",
-      "led_rgb:G",
-      "green"
-    ],
-    [
-      "pico:GP12",
-      "led_rgb:B",
-      "blue"
+      "led1:anode",
+      "red",
+      []
     ],
     [
       "pico:GND",
-      "led_rgb:GND",
-      "black"
+      "led1:cathode",
+      "black",
+      []
     ],
     [
       "pico:GP5",
-      "button_a:1",
-      "yellow"
+      "button1:1",
+      "yellow",
+      []
+    ],
+    [
+      "pico:GND",
+      "button1:2",
+      "black",
+      []
     ],
     [
       "pico:GP6",
-      "button_b:1",
-      "yellow"
+      "button2:1",
+      "yellow",
+      []
     ],
     [
       "pico:GND",
-      "button_a:2",
-      "black"
-    ],
-    [
-      "pico:GND",
-      "button_b:2",
-      "black"
+      "button2:2",
+      "black",
+      []
     ],
     [
       "pico:GP27",
       "joystick:VRX",
-      "green"
+      "green",
+      [
+        "h29",
+        "v29"
+      ]
     ],
     [
       "pico:GP26",
       "joystick:VRY",
-      "green"
+      "green",
+      [
+        "h29",
+        "v29"
+      ]
     ],
     [
       "pico:GP22",
       "joystick:SW",
-      "green"
+      "green",
+      [
+        "h29",
+        "v29"
+      ]
     ],
     [
       "pico:GND",
       "joystick:GND",
-      "black"
+      "black",
+      [
+        "h38.6",
+        "v9.6"
+      ]
     ],
     [
       "pico:GP14",
-      "oled_display:SDA",
-      "limegreen"
+      "oled1:SDA",
+      "limegreen",
+      []
     ],
     [
       "pico:GP15",
-      "oled_display:SCL",
-      "limegreen"
+      "oled1:SCL",
+      "limegreen",
+      []
     ],
     [
       "pico:3V3",
-      "oled_display:VCC",
-      "red"
+      "oled1:VCC",
+      "red",
+      []
     ],
     [
       "pico:GND",
-      "oled_display:GND",
-      "black"
+      "oled1:GND",
+      "black",
+      []
+    ],
+    [
+      "led1:A",
+      "pico:GP13",
+      "green",
+      [
+        "h28.8",
+        "v-38.44"
+      ]
+    ],
+    [
+      "led1:C",
+      "res1:1",
+      "green",
+      [
+        "h-38",
+        "v67.2"
+      ]
+    ],
+    [
+      "res1:2",
+      "pico:GND.4",
+      "green",
+      [
+        "h27.6",
+        "v-96.04"
+      ]
+    ],
+    [
+      "led1:C",
+      "res3:1",
+      "green",
+      [
+        "h-47.6",
+        "v57.6"
+      ]
+    ],
+    [
+      "res3:2",
+      "pico:GND.4",
+      "green",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "button1:2.r",
+      "pico:GP5",
+      "green",
+      [
+        "h29",
+        "v29"
+      ]
+    ],
+    [
+      "button1:1.r",
+      "pico:GND.1",
+      "black",
+      [
+        "h38.6",
+        "v9.6"
+      ]
+    ],
+    [
+      "button2:2.r",
+      "pico:GP6",
+      "green",
+      [
+        "h29",
+        "v29"
+      ]
+    ],
+    [
+      "pico:GP27",
+      "joystick:HORZ",
+      "green",
+      [
+        "h0"
+      ]
+    ],
+    [
+      "joystick:VERT",
+      "pico:GP26",
+      "green",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "joystick:GND",
+      "pico:GND.6",
+      "black",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "joystick:VCC",
+      "pico:3V3",
+      "red",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "button2:1.r",
+      "pico:GND.1",
+      "black",
+      [
+        "v0"
+      ]
     ]
   ],
   "dependencies": {}
