@@ -1,0 +1,132 @@
+{
+  "version": 1,
+  "author": "Letícia Gonçalves",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "board-pi-pico",
+      "id": "pico",
+      "top": 100,
+      "left": 350,
+      "attrs": {
+        "builder": "pico-sdk"
+      }
+    },
+    {
+      "type": "wokwi-led-rgb",
+      "id": "led_rgb",
+      "top": 200,
+      "left": 150,
+      "attrs": {
+        "common": "cathode"
+      }
+    },
+    {
+      "type": "wokwi-button",
+      "id": "button_a",
+      "top": 250,
+      "left": 150
+    },
+    {
+      "type": "wokwi-button",
+      "id": "button_b",
+      "top": 300,
+      "left": 150
+    },
+    {
+      "type": "wokwi-joystick",
+      "id": "joystick",
+      "top": 200,
+      "left": 300
+    },
+    {
+      "type": "wokwi-oled-display-1306",
+      "id": "oled_display",
+      "top": 250,
+      "left": 350
+    }
+  ],
+  "connections": [
+    [
+      "pico:GP13",
+      "led_rgb:R",
+      "red"
+    ],
+    [
+      "pico:GP11",
+      "led_rgb:G",
+      "green"
+    ],
+    [
+      "pico:GP12",
+      "led_rgb:B",
+      "blue"
+    ],
+    [
+      "pico:GND",
+      "led_rgb:GND",
+      "black"
+    ],
+    [
+      "pico:GP5",
+      "button_a:1",
+      "yellow"
+    ],
+    [
+      "pico:GP6",
+      "button_b:1",
+      "yellow"
+    ],
+    [
+      "pico:GND",
+      "button_a:2",
+      "black"
+    ],
+    [
+      "pico:GND",
+      "button_b:2",
+      "black"
+    ],
+    [
+      "pico:GP27",
+      "joystick:VRX",
+      "green"
+    ],
+    [
+      "pico:GP26",
+      "joystick:VRY",
+      "green"
+    ],
+    [
+      "pico:GP22",
+      "joystick:SW",
+      "green"
+    ],
+    [
+      "pico:GND",
+      "joystick:GND",
+      "black"
+    ],
+    [
+      "pico:GP14",
+      "oled_display:SDA",
+      "limegreen"
+    ],
+    [
+      "pico:GP15",
+      "oled_display:SCL",
+      "limegreen"
+    ],
+    [
+      "pico:3V3",
+      "oled_display:VCC",
+      "red"
+    ],
+    [
+      "pico:GND",
+      "oled_display:GND",
+      "black"
+    ]
+  ],
+  "dependencies": {}
+}

@@ -1,0 +1,33 @@
+.program ws2818b
+.side_set 1
+
+.wrap_target
+    out x, 1        side 0 [2]
+    jmp !x, 3       side 1 [1]
+    jmp 0           side 1 [4]
+    nop             side 0 [4]
+.wrap 
+
+
+% c-sdk {
+#include "hardware/clocks.h"
+
+// Usar static inline evita a duplicidade de definição em múltiplos arquivos fonte.
+static inline void ws2818b_program_init(PIO pio, uint sm, uint offset, uint pin, float freq) {
+
+  pio_gpio_init(pio, pin);
+  
+  pio_sm_set_consecutive_pindirs(pio, sm, pin, 1, true);
+  
+  // Configuração do programa.
+  pio_sm_config c = ws2818b_program_get_default_config(offset);
+  sm_config_set_sideset_pins(&c, pin); // Usa pinos sideset.
+  sm_config_set_out_shift(&c, false, true, 8); // Transferências de 8 bits, shift à direita.
+  sm_config_set_fifo_join(&c, PIO_FIFO_JOIN_TX); // Usa apenas FIFO de transmissão.
+  float prescaler = clock_get_hz(clk_sys) / (10.f * freq); // 10 ciclos por transmissão; freq é a frequência dos bits codificados.
+  sm_config_set_clkdiv(&c, prescaler);
+  
+  pio_sm_init(pio, sm, offset, &c);
+  pio_sm_set_enabled(pio, sm, true);
+}
+%}
